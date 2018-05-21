@@ -7,6 +7,8 @@
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+	<script src="js/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 	<script src="./assets/teacher-list.js"></script>
 	<link href="starter-template.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +18,7 @@
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
+
 	gtag('config', 'UA-119543126-1');
 	</script>
 </head>
@@ -41,7 +44,7 @@
 	</nav>
 	<div id="section-teacher">
 		<div>
-			<h1>			 <b><span id="s-teacher-name"></span></b></h2>
+			<h1>		  <b><span id="s-teacher-name"></span></b></h2>
 			<h3>ความยาก:  <b><span id="s-difficulty"></span></b></h3>
 			<h3>อยากจะลองอีกครั้ง:<b><span id="s-retake"></span> </b></h3>
 			<h3>คณะ:  <b><span id="s-department"></span></b></h3>
@@ -137,6 +140,10 @@
 			<button type="button" id="btn-next-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>หน้าต่อไป</b></button>
 		</div>
 		<br>
+		<div id="div-please-sign" style="text-align: center">
+			<h2>กรุณาเข้าสู่ระบบเพื่อเพิ่มความเห็น</h2>
+			<div id="div-auth-container"></div>
+		</div>
 		<div id="div-add-comment">
 			<h2><b>เพิ่มความเห็น</b></h2>
 			<label for="in-course-id" type="text">รหัสวิชา:</label>
