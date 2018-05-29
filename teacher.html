@@ -1,194 +1,170 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Kru Review</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
-	<script src="js/firebaseui.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-	<script src="./assets/teacher-list.js"></script>
-	<link href="starter-template.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
 
-	gtag('config', 'UA-119543126-1');
-	</script>
-</head>
-<body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-		<a class="navbar-brand" href="index.html" id="a-home">Kru Review</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" id="a-login-logout" href="#">Login/Signup</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="a-dashboard" href="dashboard.html">Account</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="a-list" href="about.html">About</a>
-			</li>
-			</ul>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="แพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน">
+    <meta name="author" content="">
+
+    <title>Kru Review</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	
+	<!-- Custom styles for this template -->
+	<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+
+	<link href="form-validation.css" rel="stylesheet">
+	<link href="starter-template.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  </head>
+
+  <body class="bg-light">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+			<a class="navbar-brand" href="index.html" id="a-home">หน้าแรก</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" id="a-login-logout" href="#">เข้าสู่ระบบ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="a-dashboard" href="dashboard.html">บัญชี</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="a-list" href="about.html">เกี่ยวกับ</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>		  <b><span id="s-teacher-name"></span></b></h4>
+					<h5 class="text-muted">ความยาก:  <b><span id="s-difficulty"></span></b></h5>
+					<h5 class="text-muted">อยากจะลองอีกครั้ง: <b><span id="s-retake"></span> </b></h5>
+					<h5 class="text-muted">คณะ:  <b><span id="s-department"></span></b></h5>
+					<br>
+					<br>
+				</div>
+				<div class="col-md-12">
+					<ul class="list-group mb-3" id="li-comment">
+						<!-- <li style="margin: 10px 0;" class="card list-group-item d-flex justify-content-between">
+							<div class="col-md-12">
+								<h6 class="my-0"><b>05/08/2017</b></h6>
+								<div class="rating">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star half"></i>
+								</div>
+								<h7 class="text-muted"><i>"อาจารย์เทพมาก ลงทะเบียนด่วน"</i></h7> <br>
+								<hr class="mb-4">
+								<h7 class="text-muted">รหัสวิชา: <b>ICS1222</b><br>
+								<h7 class="text-muted">ความยาก: <b>3</b></h7><br>
+								<h7 class="text-muted">เกรดที่ได้รับ: <b>A</b></h7> <br>
+								<h7 class="text-muted">อยากกลับมาเรียนอีก: <b>Yes</b></h7> <br>
+								<hr class="mb-4">
+								<h9>Prof John cares deeply for her students. 
+									She sets the class up in a way where a lot of 
+									information is given but it doesn't seem like 
+									that at all. You retained the information 
+									learned in her class because of the way she taught. 
+									
+									<span class="collapse" id="commentid">
+									If she realized we were not learning or retaining,
+									she would slow down. Passing becomes easy
+									when you're truly learning.
+									</span> <a data-toggle="collapse" href="#commentid" data-target="#commentid">อ่านต่อ... </a>
+								</h9>
+								<hr class="mb-4">
+								<button class="btn btn-sm" style="color: black;"><span class="glyphicon glyphicon-thumbs-up"></span> 0 <b>มีประโยชน์</b></button>
+								<button class="btn btn-sm" style="color: black;"><span class="glyphicon glyphicon-thumbs-down"></span> 0 <b>ไม่มีประโยชน์</b></button>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+				<div class="col-md-12 text-center">
+					<button type="button" id="btn-prev-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left"></span><b>หน้าก่อนหน้านี้</b></button>
+					<button type="button" id="btn-next-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>หน้าต่อไป</b></button>
+				</div>
+				<div id="div-please-sign"  class="col-md-12 mb-3 text-center">
+					<h2>กรุณาเข้าสู่ระบบเพื่อเพิ่มความเห็น</h2>
+					<div id="div-auth-container"></div>
+				</div>
+				<div id="div-add-comment" class="col-md-12">
+					<br><br>
+					<h4 class="mb-3 text-center"><b>เพิ่มความเห็น</b></h4>
+					<label for="in-course-id" type="text">วิชา/รหัสวิชา:</label>
+					<input id="in-course-id"  class="form-control"><br>
+					<label for="sel-difficulty">ความยาก:</label>
+					<select id="sel-difficulty" class="custom-select d-block w-100">
+						<option value="N/A">N/A</option>
+						<option value="5">5 ยากมากน้ำตาจะไหล </option>
+						<option value="4">4 ฟิตจัดจนกล้ามขึ้น งานเยอะมาก</option>
+						<option value="3">3 ก็ปกติดีหนิ</option>
+						<option value="2">2 ก็ได้เอง่ายอยู่นะ</option>
+						<option value="1">1 ชิลๆ แค่เช็คชื่อก็ผ่านแล้ว</option>
+					</select><br>
+					<label for="sel-rating">คะแนนของครู:</label>
+					<select id="sel-rating" class="custom-select d-block w-100">
+						<option value="N/A">N/A</option>
+						<option value="5">5 อาจารย์เทพมาก ลงทะเบียนด่วน!</option>
+						<option value="4">4 เป็นทางเลือกที่ดี อาจารย์สอนดีด้วย</option>
+						<option value="3">3 ก็โอนะ เรียนๆไปเถอะ</option>
+						<option value="2">2 เฉยๆอ่ะ</option>
+						<option value="1">1 อาจารย์ควรไปพัก</option>
+					</select><br>
+					<label for="sel-grade-recieved">เกรดที่ได้รับ:</label>
+					<select id="sel-grade-recieved" class="custom-select d-block w-100">
+						<option value="N/A">N/A</option>
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+						<option value="F">F</option>
+					</select><br>
+					<label for="sel-retake">อยากกลับมาเรียนอีก:</label>
+					<select id="sel-retake" class="custom-select d-block w-100">
+						<option value="N/A">N/A</option>
+						<option value="Yes">ใช่</option>
+						<option value="No">ไม่</option>
+					</select><br>
+					<textarea id="tb-comment-text" class="form-control" cols="40" rows="5"></textarea><br>
+					<div id='div-recaptcha'></div>
+					<br>
+					<button id="btn-submit-comment" class="btn btn-primary" type="submit">Submit</button>		
+				</div>
+			</div>
 		</div>
-	</nav>
-	<div id="section-teacher">
-		<div>
-			<h1>		  <b><span id="s-teacher-name"></span></b></h2>
-			<h3>ความยาก:  <b><span id="s-difficulty"></span></b></h3>
-			<h3>อยากจะลองอีกครั้ง:<b><span id="s-retake"></span> </b></h3>
-			<h3>คณะ:  <b><span id="s-department"></span></b></h3>
-		</div>
+			
+    
+		<!-- ========================== Essentials ===================================================== -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-119543126-1');
+		</script>
 		
-		<br>
-		<h2><b>ความเห็น</b></h2>
-		<br>
-		<table id="tbl-comment" class="r-table table table-bordered ">
-			<colgroup>
-				<col span="1" style="width: 20%;">
-				<col span="1" style="width: 20%;">
-				<col span="1" style="width: 60%;">
-			</colgroup>
-			<tr>
-				<th>ภาพรวม</th>
-				<th>รหัสวิชา</th>
-				<th>คำอธิบาย</th>
-			</tr>
-			<!-- <tr>
-				<td>
-					<div class="date">05/08/2017</div>
-					<div class="rating">
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star half"></i>
-					</div>
-					<div>Overall Quality: 4.0</div> 
-					<div>Level of Difficulty: 3.0</div>
-				</td>
-				<td>
-					<div><b>EE160</b></div>
-					<div>Grade Recieved: A</div> 
-					<div>Would Take Again: Yes</div> 
-				</td>
-				<td>
-					<p>Prof John cares deeply for her students. She sets the class up in a way where a lot of information is given but it doesn't seem like that at all. You retained the information learned in her class because of the way she taught. If she realized we were not learning or retaining, she would slow down. Passing becomes easy when you're truly learning.</p>
-					<div>
-						<p><b>0 people like this</b></p>
-						<button type="button" class="btn btn-default" style="color: blue"> <span class="glyphicon glyphicon-thumbs-up"></span> Helpful</button>
-						<button type="button" class="btn btn-default" style="color: red"> <span class="glyphicon glyphicon-thumbs-down"></span> Not Helpful</button>
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-flag"></span>Flag</button>
-					</div>
-				</td>
-			</tr> -->
-			<!-- <tr>
-				<td>
-					<div class="date">05/08/2017</div>
-					<div><span class="av-grade"><b>Average</b></span></div>
-					<div>Overall Quality: 4.0</div> 
-					<div>Level of Difficulty: 3.0</div>
-				</td>
-				<td>
-					<div><b>EE160</b></div>
-					<div>Grade: A</div> 
-					<div>Would Take Again: Yes</div> 
-				</td>
-				<td>
-					<p>Prof John cares deeply for her students. She sets the class up in a way where a lot of information is given but it doesn't seem like that at all. You retained the information learned in her class because of the way she taught. If she realized we were not learning or retaining, she would slow down. Passing becomes easy when you're truly learning.</p>
-					<div>
-						<p><b>0 people like this</b></p>
-						<button type="button" class="btn btn-default" style="color: blue"> <span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-flag"></span>Flag</button>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="date">05/08/2017</div>
-					<div><span class="bad-grade">Bad</span></div>
-					<div>Overall Quality: 4.0</div> 
-					<div>Level of Difficulty: 3.0</div>
-				</td>
-				<td>
-					<div><b>EE160</b></div>
-					<div>Grade: A</div> 
-					<div>Would Take Again: Yes</div> 
-				</td>
-				<td>
-					<p>Prof John cares deeply for her students. She sets the class up in a way where a lot of information is given but it doesn't seem like that at all. You retained the information learned in her class because of the way she taught. If she realized we were not learning or retaining, she would slow down. Passing becomes easy when you're truly learning.</p>
-					<div>
-						<p><b>0 people like this</b></p>
-						<button type="button" class="btn btn-default" style="color: blue"> <span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-flag"></span>Flag</button>
-					</div>
-				</td>
-			</tr> -->
-		</table>
-		<div>
-            <button type="button" id="btn-prev-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left"></span><b>หน้าก่อนหน้านี้</b></button>
-			<button type="button" id="btn-next-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>หน้าต่อไป</b></button>
-		</div>
-		<br>
-		<div id="div-please-sign" style="text-align: center">
-			<h2>กรุณาเข้าสู่ระบบเพื่อเพิ่มความเห็น</h2>
-			<div id="div-auth-container"></div>
-		</div>
-		<div id="div-add-comment">
-			<h2><b>เพิ่มความเห็น</b></h2>
-			<label for="in-course-id" type="text">รหัสวิชา:</label>
-			<input id="in-course-id"><br>
-			<label for="sel-difficulty">ความยาก:</label>
-			<select id="sel-difficulty">
-				<option value="N/A">N/A</option>
-				<option value="5">5 ยากมากน้ำตาจะไหล </option>
-				<option value="4">4 ฟิตจัดจนกล้ามขึ้น งานเยอะมาก</option>
-				<option value="3">3 ก็ปกติดีหนิ</option>
-				<option value="2">2 ก็ได้เอง่ายอยู่นะ</option>
-				<option value="1">1 ชิลๆ แค่เช็คชื่อก็ผ่านแล้ว</option>
-			</select><br>
-			<label for="sel-rating">คะแนนของครู:</label>
-			<select id="sel-rating">
-				<option value="N/A">N/A</option>
-				<option value="5">5 อาจารย์เทพมาก ลงทะเบียนด่วน!</option>
-				<option value="4">4 เป็นทางเลือกที่ดี อาจารย์สอนดีด้วย</option>
-				<option value="3">3 ก็โอนะ เรียนๆไปเถอะ</option>
-				<option value="2">2 เฉยๆอ่ะ</option>
-				<option value="1">1 อาจารย์ควรไปพัก</option>
-			</select><br>
-			<label for="sel-grade-recieved">เกรดที่ได้รับ:</label>
-			<select id="sel-grade-recieved">
-				<option value="N/A">N/A</option>
-				<option value="A">A</option>
-				<option value="B">B</option>
-				<option value="C">C</option>
-				<option value="D">D</option>
-				<option value="F">F</option>
-			</select><br>
-			<label for="sel-retake">อยากกลับมาเรียนอีก:</label>
-			<select id="sel-retake">
-				<option value="N/A">N/A</option>
-				<option value="Yes">ใช่</option>
-				<option value="No">ไม่</option>
-			</select><br>
-			<textarea id="tb-comment-text" cols="40" rows="5"></textarea><br>
-			<div id='div-recaptcha'></div>
-			<button id="btn-submit-comment">Submit</button>
-		</div>
-	</div>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-</body>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<script src="./assets/teacher-list.js"></script>
+
+		<script src="js/firebaseui.js"></script>
+	
+		<script type="text/javascript" src="js/app.js"></script>
+  </body>
 </html>

@@ -1,206 +1,156 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Kru Review</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="แพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน">
+    <meta name="author" content="">
+
+    <title>Kru Review</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	
+	<!-- Custom styles for this template -->
+	<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+
+	<link href="form-validation.css" rel="stylesheet">
+	<link href="starter-template.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+			<a class="navbar-brand" href="index.html" id="a-home">หน้าแรก</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" id="a-login-logout" href="#">เข้าสู่ระบบ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="a-dashboard" href="dashboard.html">บัญชี</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="a-list" href="about.html">เกี่ยวกับ</a>
+				</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="py-5 text-center">
+				<h2>Kru Review</h2>
+				<p class="lead">
+					พวกเราเป็นแพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน 
+					โดยทุกๆความเห็นจะไม่มีการระบุตัวตนแต่อย่างใด									
+					และเพื่อประเมิน โปรดเข้าสู่ระบบด้วยการสร้างบัญชีโดยใช้อีเมล			
+				</p>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="in-search">ค้นหา:</label>
+							<input id="in-search"  class="form-control" placeholder="" type="text" value="">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="sel-search-by">ค้นหาโดย:</label>
+							<select class="custom-select d-block w-100" id="sel-search-by">
+								<option value="name">ชื่อ</option>
+								<option value="department">คณะ</option>
+							</select>
+						</div>
+					</div>
+					<button id="btn-search" class="btn btn-primary" type="submit">ค้นหา</button>
+				</div>
+				<div class="col-md-12">
+					<h4 id="h-search-msg" class="text-center"></h4>
+					<ul class="list-group mb-3" id="li-search-result">
+						<!-- <li class="list-group-item d-flex justify-content-between">
+							<div  class="col-md-6">
+								<h5 class="my-0"> <a href="https://www.google.com"><b>อ. ชาญยุทธ์ ศุภคุณภิญโญ</b></a></h5>
+								<h7 class="text-muted">คณะแพทยศาสตร์</h7>
+								<div class="rating">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star half"></i>
+										<span>(43)</span>
+								</div>
+							</div>
+						</li> -->
+					</ul>
+					<div>
+						<button type="button" id="btn-prev-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left"></span><b>หน้าก่อนหน้านี้</b></button>
+						<button type="button" id="btn-next-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>หน้าต่อไป</b></button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- <table id="tbl-search-result" class="table table-bordered tbl-sm table-responsive">
+				<colgroup>
+					<col span="1" style="width: 25%;">
+					<col span="1" style="width: 25%;">
+					<col span="1" style="width: 20%;">
+					<col span="1" style="width: 10%;">
+					<col span="1" style="width: 10%;">
+					<col span="1" style="width: 10%;">				
+				</colgroup>
+				<tr>
+					<th>ชื่อ</th>
+					<th>คณะ</th>
+					<th>คะแนน</th>
+					<th>ความยาก</th>
+					<th>อยากกลับมาเรียนอีก</th>
+				</tr>
+				<tr>
+					<td>
+						<div><a href="teacher.html?id=1234"><b>John Doe</b></a></div>
+					</td>
+					<td>
+						Electrical Engineering
+					</td>
+					<td>
+						<div class="rating">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star half"></i>
+							<span>(43)</span>
+						</div>
+					</td>
+					<td>
+						<div>4.3</div>
+					</td>
+					<td>
+						<div>20%</div>
+					</td>
+				</tr>
+			</table> -->
+    
+	<!-- ========================== Essentials ===================================================== -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-119543126-1');
+	</script>
+	
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
-    <script src="./assets/teacher-list.js"></script>
-	<meta name="description" content="แพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="starter-template.css" rel="stylesheet">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'UA-119543126-1');
-	</script>
-</head>
-<body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-		<a class="navbar-brand" href="index.html" id="a-home">Kru Review</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" id="a-login-logout" href="#">Login/Signup</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="a-dashboard" href="dashboard.html">Account</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="a-list" href="about.html">About</a>
-			</li>
-			</ul>
-		</div>
-	</nav>
-	<main role="main" class="container">
-		<div class="starter-template">
-			<h1><b>ยินดีต้อนรับเข้าสู่ Kru Review!</b></h1>
-			<p>
-				พวกเราเป็นแพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน <br>
-				โดยทุกๆความเห็นจะไม่มีการระบุตัวตนแต่อย่างใด									<br>
-				และเพื่อประเมิน โปรดเข้าสู่ระบบด้วยการสร้างบัญชีโดยใช้อีเมล			
-			</p>
-		</div>
-	</main>
-	<!-- <h4>
-		<p class="h4">
-			พวกเราเป็นแพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน
-			โดยทุกๆความเห็นจะไม่มีการระบุตัวตนแต่อย่างใด
-			และเพื่อประเมิน โปรดเข้าสู่ระบบด้วยการสร้างบัญชีโดยใช้อีเมล
-		</p>
 	
-	</h4> -->
-	
-    <label>ค้นหา:</label>
-	<input id="in-search" type="text" value="">
-	<label for="sel-search-by">ค้นหาโดย:</label>
-	<select id="sel-search-by">
-		<option value="name">ชื่อ</option>
-		<option value="department">คณะ</option>
-	</select>
-	<button id="btn-search">ค้นหา</button>
-	<h3 id="h-search-msg"></h3>
-	<table id="tbl-search-result" class="table table-bordered">
-		<colgroup>
-			<col span="1" style="width: 25%;">
-			<col span="1" style="width: 25%;">
-			<col span="1" style="width: 20%;">
-			<col span="1" style="width: 10%;">
-			<col span="1" style="width: 10%;">
-			<col span="1" style="width: 10%;">				
-		</colgroup>
-		<tr>
-			<th>ชื่อ</th>
-			<th>คณะ</th>
-			<th>คะแนน</th>
-			<th>ความยาก</th>
-			<th>อยากกลับมาเรียนอีก</th>
-		</tr>
-		<!-- <tr>
-			<td>
-				<div><a href="teacher.html?id=1234"><b>John Doe</b></a></div>
-			</td>
-			<td>
-				Electrical Engineering
-			</td>
-			<td>
-				<div class="rating">
-					<i class="glyphicon glyphicon-star"></i>
-					<i class="glyphicon glyphicon-star"></i>
-					<i class="glyphicon glyphicon-star"></i>
-					<i class="glyphicon glyphicon-star"></i>
-					<i class="glyphicon glyphicon-star half"></i>
-					<span>(43)</span>
-				</div>
-			</td>
-			<td>
-				<div>4.3</div>
-			</td>
-			<td>
-				<div>20%</div>
-			</td>
-		</tr> -->
-	</table>
-	<div>
-		<button type="button" id="btn-prev-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left"></span><b>หน้าก่อนหน้านี้</b></button>
-		<button type="button" id="btn-next-page" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>หน้าต่อไป</b></button>
-	</div>
-	<!-- <div id="section-list">
-		<h2>Catelog</h2>
-		<table id="tbl-catelog" class="table table-bordered">
-			<colgroup>
-				<col span="1" style="width: 40%;">
-				<col span="1" style="width: 20%;">
-				<col span="1" style="width: 20%;">
-				<col span="1" style="width: 20%;">				
-			</colgroup>
-			<tr>
-				<th>Name</th>
-				<th>Rating</th>
-				<th>Difficulty</th>
-				<th>Would Take Again</th>
-			</tr>
-			<tr>
-				<td>
-					<div><a href="teacher.html?id=1234"><b>John Doe</b></a></div>
-				</td>
-				<td>
-					<div class="rating">
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star half"></i>
-						<span>(43)</span>
-					</div>
-				</td>
-				<td>
-					<div>4.3</div>
-				</td>
-				<td>
-					<div>20%</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div><a href="#"><b>Tep Dobry</b></a></div>
-				</td>
-				<td>
-					<div class="rating">
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<span>(0)</span>
-					</div>
-				</td>
-				<td>
-					<div>N/A</div>
-				</td>
-				<td>
-					<div>N/A</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div><a href="#"><b>Host Madsen</b></a></div>
-				</td>
-				<td>
-					<div class="rating">
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<i class="glyphicon glyphicon-star-empty"></i>
-						<span>(1)</span>
-					</div>
-				</td>
-				<td>
-					<div>N/A</div>
-				</td>
-				<td>
-					<div>N/A</div>
-				</td>
-			</tr>	
-		</table>
-		<div>
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left"></span><b>Previous Page</b></button>
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-triangle-right"></span><b>Next Page </b></button>
-		</div>
-	</div> -->
-	<script type="text/javascript" src="js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <script src="./assets/teacher-list.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+  </body>
 </html>

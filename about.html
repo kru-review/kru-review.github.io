@@ -1,65 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kru Review</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="starter-template.css" rel="stylesheet">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'UA-119543126-1');
-	</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="แพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน">
+		<meta name="author" content="">
+	
+		<title>Kru Review</title>
+	
+		<!-- Bootstrap core CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		
+		<!-- Custom styles for this template -->
+		<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+	
+		<link href="form-validation.css" rel="stylesheet">
+		<link href="starter-template.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-			<a class="navbar-brand" href="index.html" id="a-home">Kru Review</a>
+			<a class="navbar-brand" href="index.html" id="a-home">หน้าแรก</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link" id="a-login-logout" href="#">Login/Signup</a>
+					<a class="nav-link" id="a-login-logout" href="#">เข้าสู่ระบบ</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="a-dashboard" href="dashboard.html">Account</a>
+					<a class="nav-link" id="a-dashboard" href="dashboard.html">บัญชี</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="a-list" href="about.html">About</a>
+					<a class="nav-link" id="a-list" href="about.html">เกี่ยวกับ</a>
 				</li>
 				</ul>
 			</div>
 		</nav>
 		<main role="main" class="container">
-			<div class="starter-template">
-				<h1><b>About</b></h1>
-				<p>
+				<h3 class="text-center">เกี่ยวกับเรา</h3>
+				<div>
 					Kru Review เป็นเว็บไซต์ทดลองใช้ ซึ่งส่งเสริมการเปิดกว้างและสร้างความโปร่งใส ระหว่างผู้สอนและนักศึกษา	
 					เมื่อนักศึกษาต้องได้รับการประเมินโดยการสอบ  เว็บไซต์นี้จะเป็นสื่อกลางให้นักศึกษาได้ประเมินการสอนของผู้สอน โดยการประเมินหรือแสดงความเห็นนั้นจะไม่มีการระบุตัวตนผู้ประเมิน <br>		
-				</p>
-				<p>
 					<b>Disclaimer:</b> พวกเราเป็นเพียงแพลทฟอร์มที่ให้นักศึกษาแสดงความเห็นเกี่ยวกับผู้สอน พวกเราไม่ได้เป็นแก้ไขหรือแสดงความเห็นขึ้นเอง ดังนั้น เราจะไม่รับผิดชอบใดๆต่อผลกระทบจากการแสดงความเห็นที่อาจเกิดขึ้น <br>
 					อย่างไรก็ตามเราส่งเสริมการแสดงความเห็นที่สร้างสรรค์และเราจะพยายามอย่างดีที่สุด เพื่อจะลบคอมเม้นการหรือการแสดงความเห็นที่มีไม่ประโยชน์
-				</p>
-				<p>
 					โปรเจคนี้ยังอยู่ในขั้นทดลอง ถ้าเราได้รับการสนับสนุนเป็นอย่างดี เรา 
 					หวังว่าจะขยายโครงการเพื่อให้แสดงความเห็นเกี่ยวกับการเรียนการสอนของอาจารย์ในสถาบันอื่นด้วย 
 					หากมีข้อสงสัยหรือข้อกังวลใดๆ โปรดส่งข้อความถึงเราทาง krureview0@gmail.com
-				</p>
+				</div>
+				<hr>
+				<h3 class="text-center">ติดต่อเรา</h3>
+				<div>
+					โปรเจคนี้ยังอยู่ในขั้นทดลอง ถ้าเราได้รับการสนับสนุนเป็นอย่างดี เรา 
+					หวังว่าจะขยายโครงการเพื่อให้แสดงความเห็นเกี่ยวกับการเรียนการสอนของอาจารย์ในสถาบันอื่นด้วย 
+					หากมีข้อสงสัยหรือข้อกังวลใดๆ โปรดส่งข้อความถึงเราทาง krureview0@gmail.com
+				</div>
+				<hr>
+				<div>
+					หากคุณไม่พบครูโปรดส่งอีเมลไปที่ krureview0@gmail.com พร้อมด้วยคณะและชื่อเต็ม
+				</div>
+				<hr>
+				<h3 class="text-center"> เกี่ยวกับ review</h3>
+				<h4>ความยาก</h4>
+				<ul class="list-group mb-3">
+					<li class="list-group-item d-flex justify-content-between">5 ยากมากน้ำตาจะไหล </li>
+					<li class="list-group-item d-flex justify-content-between">4 ฟิตจัดจนกล้ามขึ้น งานเยอะมาก</li>
+					<li class="list-group-item d-flex justify-content-between">3 ก็ปกติดีหนิ</li>
+					<li class="list-group-item d-flex justify-content-between">2 ก็ได้เอง่ายอยู่นะ</li>
+					<li class="list-group-item d-flex justify-content-between">1 ชิลๆ แค่เช็คชื่อก็ผ่านแล้ว</li>
+				</ul>
+				<h4>คะแนนของครู</h4>
+				<ul class="list-group mb-3"> 
+					<li class="list-group-item d-flex justify-content-between">5 อาจารย์เทพมาก ลงทะเบียนด่วน!</li>
+					<li class="list-group-item d-flex justify-content-between">4 เป็นทางเลือกที่ดี อาจารย์สอนดีด้วย</li>
+					<li class="list-group-item d-flex justify-content-between">3 ก็โอนะ เรียนๆไปเถอะ</li>
+					<li class="list-group-item d-flex justify-content-between">2 เฉยๆอ่ะ</li>
+					<li class="list-group-item d-flex justify-content-between">1 อาจารย์ควรไปพัก</li>
+				</ul>
 			</div>
 		</main>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-119543126-1');
+		</script>
+		
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<script src="./assets/teacher-list.js"></script>
+
+		<script src="js/firebaseui.js"></script>
+	
+		<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

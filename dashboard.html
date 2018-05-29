@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kru Review</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="starter-template.css" rel="stylesheet">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'UA-119543126-1');
-	</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="แพลทฟอร์มเพื่อให้นักศึกษาแสดงความเห็นและให้ประเมิน การสอนของอาจารย์ผู้สอน">
+		<meta name="author" content="">
+		<title>Kru Review</title>
+	
+		<!-- Bootstrap core CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		
+		<!-- Custom styles for this template -->
+		<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+	
+		<link href="form-validation.css" rel="stylesheet">
+		<link href="starter-template.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-		<a class="navbar-brand" href="index.html" id="a-home">Kru Review</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="index.html" id="a-home">หน้าแรก</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" id="a-login-logout" href="#">Login/Signup</a>
+				<a class="nav-link" id="a-login-logout" href="#">เข้าสู่ระบบ</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="a-dashboard" href="dashboard.html">Account</a>
+				<a class="nav-link" id="a-dashboard" href="dashboard.html">บัญชี</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="a-list" href="about.html">About</a>
+				<a class="nav-link" id="a-list" href="about.html">เกี่ยวกับ</a>
 			</li>
 			</ul>
 		</div>
@@ -93,9 +91,27 @@
 		</table>
 	</div> -->
 
-	<script type="text/javascript" src="js/app.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<!-- ========================== Essentials ===================================================== -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119543126-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-119543126-1');
+		</script>
+		
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<script src="./assets/teacher-list.js"></script>
+
+		<script src="js/firebaseui.js"></script>
+	
+		<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
