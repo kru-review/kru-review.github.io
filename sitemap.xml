@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
   <url>
     <loc>https://kru-review.github.io/index.html</loc>
-    <loc>https://kru-review.github.io/about.html</loc> 
   </url>
+  <url>
+    <loc>https://kru-review.github.io/about.html</loc> 
+  <url>
 </urlset>
